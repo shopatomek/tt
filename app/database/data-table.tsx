@@ -18,6 +18,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Button } from "@/components/ui/button";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -36,44 +37,58 @@ export function DataBaseTable<TData, TValue>({
   });
 
   return (
-    <div className="rounded-md border-neutral-600">
-      <Table>
-        <TableHeader>
-          {table.getHeaderGroups().map((headerGroup) => {
-            return (
-              <TableRow key={headerGroup.id}>
-                {headerGroup.headers.map((header) => {
-                  return (
-                    <TableHead key={header.id}>
+    <div>
+      {/* TABLE */}
+      <div className="rounded-md border-neutral-600">
+        <Table>
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => {
+              return (
+                <TableRow key={headerGroup.id}>
+                  {headerGroup.headers.map((header) => {
+                    return (
+                      <TableHead key={header.id}>
+                        {flexRender(
+                          header.column.columnDef.header,
+                          header.getContext()
+                        )}
+                      </TableHead>
+                    );
+                  })}
+                </TableRow>
+              );
+            })}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow key={row.id}>
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
                       {flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
+                        cell.column.columnDef.cell,
+                        cell.getContext()
                       )}
-                    </TableHead>
-                  );
-                })}
+                    </TableCell>
+                  ))}
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell>Any records</TableCell>
               </TableRow>
-            );
-          })}
-        </TableHeader>
-        <TableBody>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
-                {row.getVisibleCells().map((cell) => (
-                  <TableCell key={cell.id}>
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </TableCell>
-                ))}
-              </TableRow>
-            ))
-          ) : (
-            <TableRow>
-              <TableCell>Any records</TableCell>
-            </TableRow>
-          )}
-        </TableBody>
-      </Table>
+            )}
+          </TableBody>
+        </Table>
+      </div>
+      {/* PAGINATION */}
+      <div className="flex items-center justify-start space-x-2 py-4">
+        <Button variant="outline" size="sm" onClick={()=>{
+          table.previousPage();
+        }}>
+
+        </Button>
+      </div>
     </div>
   );
 }

@@ -9,7 +9,7 @@ type Props = {}
 
 const Homepage = (props: Props) => {
   return (
-    <div className='flex'>
+    <div className='container py-10 mx-auto'>
     <DataBaseTable columns={columns} data={data}></DataBaseTable>
     </div>
     

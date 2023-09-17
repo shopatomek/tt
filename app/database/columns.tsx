@@ -1,7 +1,17 @@
 'use client';
 
+import { Button } from "@/components/ui/button";
 import { Data } from "@/lib/data";
 import { ColumnDef } from "@tanstack/react-table";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+  } from "@/components/ui/dropdown-menu"
+  
 
 // interface Data {
 //     ID: number;
@@ -53,6 +63,12 @@ export const columns: ColumnDef<Data>[] = [
     {
         header: "Likes",
         accessorKey: "Likes"
+    },
+    {
+        id: "action",
+        cell: () =>{
+            return <Button></Button>
+        }
     }
 ];
 

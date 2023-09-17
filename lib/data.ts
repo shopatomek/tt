@@ -502,3 +502,7 @@ export const data = [
   ]
   
 export type Data = (typeof data) [number]
+
+// read docs to create proper data table
+
+// https://ui.shadcn.com/docs/components/date-picker

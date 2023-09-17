@@ -21,6 +21,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/themetoggle";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -46,6 +47,7 @@ export function DataBaseTable<TData, TValue>({
 
   return (
     <div>
+      <ThemeToggle className="ml-4"/>
       {/* TABLE */}
       <div className="rounded-md border-neutral-600">
         <Table>

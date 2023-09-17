@@ -67,7 +67,7 @@ export function DataBaseTable<TData, TValue>({
             ))
           ) : (
             <TableRow>
-              <TableCell>Null</TableCell>
+              <TableCell>Any records</TableCell>
             </TableRow>
           )}
         </TableBody>

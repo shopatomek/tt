@@ -7,7 +7,10 @@ type Props = {}
 
 const Database = (props: Props) => {
   return (
+    <div className='flex'>
     <DataBaseTable columns={columns} data={data}></DataBaseTable>
+    </div>
+    
   )
 }
 

@@ -1,4 +1,4 @@
-
+'use client';
 
 import { Data } from "@/lib/data";
 import { ColumnDef } from "@tanstack/react-table";
@@ -48,6 +48,8 @@ export const columns: ColumnDef<Data>[] = [
         accessorKey: "Likes"
     }
 ];
+
+// w właściwścuach cell można definiować style, i przekazywać funkcje
 
 // // Ten kod definiuje tablicę columns, która jest używana do konfiguracji kolumn w tabeli. Tabela ta jest tworzona przy użyciu biblioteki @tanstack/react-table.
 

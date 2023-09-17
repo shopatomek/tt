@@ -37,7 +37,14 @@ export const columns: ColumnDef<Data>[] = [
     },
     {
         header: "Stats",
-        accessorKey: "Stats"
+        accessorKey: "Stats",
+        cell:({row}) => {
+             const stats = row.getValue("Stats")
+               const formatted = new Date(stats as string).toLocaleDateString()
+               return (
+                <div>{formatted}</div>
+               )
+            }
     },
     {
         header: "Tags",
@@ -49,8 +56,20 @@ export const columns: ColumnDef<Data>[] = [
     }
 ];
 
+// możliwosci biblioteki react_table
+
+// custom cell formating. przykład wyświetlenia czasu zgodnie z formatem
 // w właściwścuach cell można definiować style, i przekazywać funkcje
 
+// // cell:({row}) => {
+//     const stats = row.getValue("Stats")
+//     const formatted = new Date(stats as string).toLocaleDateString()
+//     return (
+//      <div>{formatted}</div>
+//     )
+//  }
+// },
+     
 // // Ten kod definiuje tablicę columns, która jest używana do konfiguracji kolumn w tabeli. Tabela ta jest tworzona przy użyciu biblioteki @tanstack/react-table.
 
 // W tym kodzie, importowane są dwa moduły:

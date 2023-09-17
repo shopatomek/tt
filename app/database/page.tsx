@@ -4,7 +4,7 @@ type Props = {}
 
 const Database = (props: Props) => {
   return (
-    <div>Database</div>
+    <div>Database table</div>
   )
 }
 

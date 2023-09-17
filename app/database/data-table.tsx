@@ -1,21 +1,30 @@
-'use client'
+"use client"
 
 import React from 'react'
-"use client"
+
  
 import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
-} from "@tanstack/react-table"
+} from "@tanstack/react-table";
+
+import {
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+  } from "@/components/ui/table"
 
 type Props = {}
 
-function Table({}: Props) {
+function databaseTable({}: Props) {
   return (
-    <div>Table</div>
+    <div>database Table</div>
   )
 }
 
-export default Table
+export default databaseTable

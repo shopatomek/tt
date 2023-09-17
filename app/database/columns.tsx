@@ -70,7 +70,7 @@ export const columns: ColumnDef<Data>[] = [
         id: "Actions",
         cell: ({row}) => {
             const data = row.original
-            const  dataName = data.Name
+            const dataName = data.Name
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -84,7 +84,7 @@ export const columns: ColumnDef<Data>[] = [
                         onClick={()=>{
                             navigator.clipboard.writeText(dataName)
                         }}
-                        >Copy user Name </DropdownMenuItem>
+                        >Copy User name </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

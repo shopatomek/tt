@@ -10,7 +10,9 @@ import {
     DropdownMenuLabel,
     DropdownMenuSeparator,
     DropdownMenuTrigger,
+    
   } from "@/components/ui/dropdown-menu"
+import { MoreHorizontal } from "lucide-react";
   
 
 // interface Data {
@@ -65,11 +67,29 @@ export const columns: ColumnDef<Data>[] = [
         accessorKey: "Likes"
     },
     {
-        id: "action",
-        cell: () =>{
-            return <Button></Button>
-        }
-    }
+        id: "Actions",
+        cell: ({row}) => {
+            const data = row.original
+            const  dataName = data.Name
+            return (
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" className="w-8 h-6 p-0">
+                            <MoreHorizontal className='h-4 w-4'/>
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent>
+                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuItem
+                        onClick={()=>{
+                            navigator.clipboard.writeText(dataName)
+                        }}
+                        >Copy user Name </DropdownMenuItem>
+                    </DropdownMenuContent>
+                </DropdownMenu>
+            )
+    }},
+
 ];
 
 // możliwosci biblioteki react_table

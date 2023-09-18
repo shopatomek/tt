@@ -47,8 +47,10 @@ export function DataBaseTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+  const [rowSelection, setRowSelecion] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
+    console.log(rowSelection)
   const table = useReactTable({
     data,
     columns,
@@ -59,11 +61,13 @@ export function DataBaseTable<TData, TValue>({
     onColumnVisibilityChange: setColumnVisibility,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
+    onRowSelectionChange: setRowSelecion,
 
     state: {
       sorting,
       columnFilters,
       columnVisibility,
+      rowSelection,
     },
   });
 
@@ -87,7 +91,10 @@ export function DataBaseTable<TData, TValue>({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {table.getAllColumns().filter(column => column.getCanHide()).map((column) => {
+            {table.
+            getAllColumns().
+            filter(column => column.getCanHide()).
+            map((column) => {
               return(
                <DropdownMenuCheckboxItem key="column.id" className="capitalize bg-transparent"
                checked={column.getIsVisible()}
@@ -168,6 +175,10 @@ export function DataBaseTable<TData, TValue>({
         >
           Next
         </Button>
+      </div>
+      <div className="flex-1 text-sm text-muted-foreground">
+          {table.getFilteredSelectedRowModel().rows.length} of {""}
+          {table.getFilteredRowModel().rows.length} row's selected
       </div>
     </div>
   );

@@ -98,6 +98,8 @@ export const columns: ColumnDef<Data>[] = [
         cell: ({row}) => {
             const data = row.original
             const dataName = data.Name
+            const dataLink = data.Link
+            const dataTags = data.Tags
             return (
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
@@ -106,12 +108,33 @@ export const columns: ColumnDef<Data>[] = [
                         </Button>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent>
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
+                        <DropdownMenuLabel className="text-center">Actions</DropdownMenuLabel>
+                        <hr />
+                        <br />
+                        <hr />
                         <DropdownMenuItem
+                        className="cursor-pointer"
                         onClick={()=>{
                             navigator.clipboard.writeText(dataName)
                         }}
-                        >Copy User name </DropdownMenuItem>
+                        >Copy User name
+                        </DropdownMenuItem>
+                        <hr />
+                        <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={()=>{
+                            navigator.clipboard.writeText(dataLink)
+                        }}
+                        >Copy Link
+                        </DropdownMenuItem>
+                        <hr />
+                        <DropdownMenuItem
+                        className="cursor-pointer"
+                        onClick={()=>{
+                            navigator.clipboard.writeText(dataTags)
+                        }}
+                        >Copy Tags
+                        </DropdownMenuItem>
                     </DropdownMenuContent>
                 </DropdownMenu>
             )

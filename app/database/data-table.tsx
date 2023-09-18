@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/themetoggle";
+import { Input } from "@/components/ui/input";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -53,7 +54,19 @@ export function DataBaseTable<TData, TValue>({
 
   return (
     <div>
-      <ThemeToggle className="ml-4"/>
+    {/* INPUT */}
+    <div className="flex items-center py-4">
+        <Input
+        placeholder="filter by Name"
+        value={table.getColumn("Name")?.getFilterValue() as string || ""}
+        onChange={(e) => {
+          table.getColumn("Name")?.setFilterValue(e.target.value);
+        }}
+        className="max-w-sm"
+        />
+        <ThemeToggle className="ml-4"/>
+    </div>
+      
       {/* TABLE */}
       <div className="rounded-md border-neutral-600">
         <Table>

@@ -83,10 +83,10 @@ export function DataBaseTable<TData, TValue>({
           }}
           className="max-w-sm"
         />
-        <ThemeToggle className="ml-4" />
+        <ThemeToggle className="ml-2 mr-2" />
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Button variant="outline" className="ml-auto mr-4">
+            <Button variant="outline" className="ml-auto mr-2">
               Columns
             </Button>
           </DropdownMenuTrigger>

@@ -32,6 +32,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuContent 
 } from "@/components/ui/dropdown-menu";
+import { downloadToExcel } from "@/lib/xlsx";
 
 
 interface DataTableProps<TData, TValue> {
@@ -83,6 +84,9 @@ export function DataBaseTable<TData, TValue>({
           }}
           className="max-w-sm"
         />
+        <Button className="bg-green-600 ml-2" onClick={()=>downloadToExcel()}>
+          Export to Excel
+        </Button>
         <ThemeToggle className="ml-2 mr-2" />
         <DropdownMenu>
           <DropdownMenuTrigger>

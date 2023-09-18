@@ -6,6 +6,7 @@ import {
   ColumnDef,
   ColumnFiltersState,
   SortingState,
+  VisibilityState,
   flexRender,
   getCoreRowModel,
   getFilteredRowModel,
@@ -25,6 +26,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/themetoggle";
 import { Input } from "@/components/ui/input";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuTrigger,
+  DropdownMenuContent 
+} from "@/components/ui/dropdown-menu";
+
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -36,7 +44,11 @@ export function DataBaseTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
+  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
+    []
+  );
+  const [columnVisibility, setColumnVisibility] =
+    React.useState<VisibilityState>({});
   const table = useReactTable({
     data,
     columns,
@@ -44,29 +56,53 @@ export function DataBaseTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     getSortedRowModel: getSortedRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
+    onColumnVisibilityChange: setColumnVisibility,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
-    state:{
+
+    state: {
       sorting,
       columnFilters,
-    }
+      columnVisibility,
+    },
   });
 
   return (
     <div>
-    {/* INPUT */}
-    <div className="flex items-center py-4">
+      {/* INPUT */}
+      <div className="flex items-center py-4">
         <Input
-        placeholder="filter by Name"
-        value={table.getColumn("Name")?.getFilterValue() as string || ""}
-        onChange={(e) => {
-          table.getColumn("Name")?.setFilterValue(e.target.value);
-        }}
-        className="max-w-sm"
+          placeholder="filter by Name"
+          value={(table.getColumn("Name")?.getFilterValue() as string) || ""}
+          onChange={(e) => {
+            table.getColumn("Name")?.setFilterValue(e.target.value);
+          }}
+          className="max-w-sm"
         />
-        <ThemeToggle className="ml-4"/>
-    </div>
-      
+        <ThemeToggle className="ml-4" />
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Button variant="outline" className="ml-auto mr-4">
+              Columns
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end">
+            {table.getAllColumns().filter(column => column.getCanHide()).map((column) => {
+              return(
+               <DropdownMenuCheckboxItem key="column.id" className="capitalize bg-transparent"
+               checked={column.getIsVisible()}
+               onCheckedChange={(value: boolean) => {
+                 column.toggleVisibility(!!value)
+               }}
+               >
+                {column.id}
+               </DropdownMenuCheckboxItem>
+              )
+              })}
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+
       {/* TABLE */}
       <div className="rounded-md border-neutral-600">
         <Table>

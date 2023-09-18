@@ -12,7 +12,7 @@ import {
     DropdownMenuTrigger,
     
   } from "@/components/ui/dropdown-menu"
-import { MoreHorizontal } from "lucide-react";
+import { ArrowUpDown, MoreHorizontal } from "lucide-react";
   
 
 // interface Data {
@@ -28,7 +28,16 @@ import { MoreHorizontal } from "lucide-react";
 
 export const columns: ColumnDef<Data>[] = [
     {
-        header: "ID",
+        header: ({column}) => {
+            return (
+            <button className="flex" onClick={()=>{
+                column.toggleSorting(column.getIsSorted() === "asc");
+            }}>
+                ID 
+                <ArrowUpDown className="ml-2 h-4 w-4"/>
+            </button>
+            )
+        },
         accessorKey: "ID"
     },
     {
@@ -44,7 +53,16 @@ export const columns: ColumnDef<Data>[] = [
         accessorKey: "Description"
     },
     {
-        header: "Subscribers",
+        header: ({column}) => {
+            return (
+            <button className="flex" onClick={()=>{
+                column.toggleSorting(column.getIsSorted() === "asc");
+            }}>
+                Subscribers
+                <ArrowUpDown className="ml-2 h-4 w-4"/>
+            </button>
+            )
+        },
         accessorKey: "Subscribers"
     },
     {
@@ -63,7 +81,16 @@ export const columns: ColumnDef<Data>[] = [
         accessorKey: "Tags"
     },
     {
-        header: "Likes",
+        header: ({column}) => {
+            return (
+            <button className="flex" onClick={()=>{
+                column.toggleSorting(column.getIsSorted() === "asc");
+            }}>
+                Likes
+                <ArrowUpDown className="ml-2 h-4 w-4"/>
+            </button>
+            )
+        },
         accessorKey: "Likes"
     },
     {

@@ -30,10 +30,9 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuTrigger,
-  DropdownMenuContent 
+  DropdownMenuContent,
 } from "@/components/ui/dropdown-menu";
 import { downloadToExcel } from "@/lib/xlsx";
-
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -51,7 +50,7 @@ export function DataBaseTable<TData, TValue>({
   const [rowSelection, setRowSelecion] = React.useState({});
   const [columnVisibility, setColumnVisibility] =
     React.useState<VisibilityState>({});
-    console.log(rowSelection)
+  console.log(rowSelection);
   const table = useReactTable({
     data,
     columns,
@@ -84,7 +83,7 @@ export function DataBaseTable<TData, TValue>({
           }}
           className="max-w-sm"
         />
-        <Button className="bg-green-600 ml-2" onClick={()=>downloadToExcel()}>
+        <Button className="bg-green-600 ml-2" onClick={() => downloadToExcel()}>
           Export to Excel
         </Button>
         <ThemeToggle className="ml-2 mr-2" />
@@ -95,20 +94,22 @@ export function DataBaseTable<TData, TValue>({
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            {table.
-            getAllColumns().
-            filter(column => column.getCanHide()).
-            map((column) => {
-              return(
-               <DropdownMenuCheckboxItem key="column.id" className="capitalize bg-transparent"
-               checked={column.getIsVisible()}
-               onCheckedChange={(value: boolean) => {
-                 column.toggleVisibility(!!value)
-               }}
-               >
-                {column.id}
-               </DropdownMenuCheckboxItem>
-              )
+            {table
+              .getAllColumns()
+              .filter((column) => column.getCanHide())
+              .map((column) => {
+                return (
+                  <DropdownMenuCheckboxItem
+                    key="column.id"
+                    className="capitalize bg-transparent"
+                    checked={column.getIsVisible()}
+                    onCheckedChange={(value: boolean) => {
+                      column.toggleVisibility(!!value);
+                    }}
+                  >
+                    {column.id}
+                  </DropdownMenuCheckboxItem>
+                );
               })}
           </DropdownMenuContent>
         </DropdownMenu>
@@ -181,8 +182,8 @@ export function DataBaseTable<TData, TValue>({
         </Button>
       </div>
       <div className="flex-1 text-sm text-muted-foreground">
-          {table.getFilteredSelectedRowModel().rows.length} of {""}
-          {table.getFilteredRowModel().rows.length} row's selected
+        {table.getFilteredSelectedRowModel().rows.length} of {""}
+        {table.getFilteredRowModel().rows.length} row selected
       </div>
     </div>
   );

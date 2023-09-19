@@ -49,7 +49,7 @@ export const columns: ColumnDef<Data>[] = [
       );
     },
     enableSorting: false,
-    enableHiding: false
+    enableHiding: false,
   },
 
   // double '!!' to make it a boolean, some shortcut.

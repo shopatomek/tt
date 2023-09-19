@@ -11,7 +11,7 @@ export function downloadToExcel () {
                     {label: "Link", value: "Link"},
                     {label: "Description", value: "Description"},
                     {label: "Subscribers", value: "Subscribers"},
-                    {label: "Stats", value: (row) => new Date(row.stats).toLocaleDateString()},
+                    {label: "Stats", value: (row) => new Date(row.Stats as string).toLocaleDateString()},
                     {label: "Tags", value: "Tags"},
                     {label: "Likes", value: "Likes"},              
             ],

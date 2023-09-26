@@ -83,7 +83,10 @@ export function DataBaseTable<TData, TValue>({
           }}
           className="max-w-sm"
         />
-        <Button className="bg-green-600 ml-2" onClick={() => downloadToExcel()}>
+        <Button
+          className="bg-green-600 hover:bg-green-500 ml-2"
+          onClick={() => downloadToExcel()}
+        >
           Export to Excel
         </Button>
         <ThemeToggle className="ml-2 mr-2" />

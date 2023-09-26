@@ -89,11 +89,11 @@ export function DataBaseTable<TData, TValue>({
         <ThemeToggle className="ml-2 mr-2" />
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Button variant="outline" className="ml-auto float-left mr-2">
+            <Button variant="outline" className="float-left mr-2">
               Columns
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
+          <DropdownMenuContent align="start">
             {table
               .getAllColumns()
               .filter((column) => column.getCanHide())

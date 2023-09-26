@@ -89,7 +89,7 @@ export function DataBaseTable<TData, TValue>({
         <ThemeToggle className="ml-2 mr-2" />
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Button variant="outline" className="ml-auto mr-2">
+            <Button variant="outline" className="ml-auto float-left mr-2">
               Columns
             </Button>
           </DropdownMenuTrigger>

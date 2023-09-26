@@ -1,6 +1,8 @@
 "use client"
 import { signIn, signOut, useSession } from 'next-auth/react';
 import React from 'react'
+import { Button } from "@/components/ui/button";
+import { FcGoogle } from "react-icons/fc";
 
 const SignInButton = () => {
     const {data: session} = useSession();
@@ -8,17 +10,17 @@ const SignInButton = () => {
     if (session && session.user){
          return(
             <div className='flex gap-4 ml-auto'>
-                <p className='text-sky-600'>{session.user.name}</p>
-                <button onClick={() => signOut()} className='text-red-600'>
-                    Sign Out
-                </button>
+                <p className='text-white font-bold'>Welcome {session.user.name}</p>
+                <Button className='text-white bg-blue-600 hover:bg-blue-700 ml-auto' onClick={() => signOut()}>
+                    <FcGoogle/>Sign Out
+                </Button>
 
             </div>
          )
     }
 
   return (
-   <button className='text-green-600 ml-auto' onClick={() => signIn()}>Sign In</button>
+   <Button className='text-white bg-blue-600 hover:bg-blue-700 ml-auto' onClick={() => signIn()}><FcGoogle className='mr-2 size-20px'/>Sign In</Button>
   )
 }
 

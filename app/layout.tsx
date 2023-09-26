@@ -24,10 +24,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="container py-10 mx-auto">
-      <Providers>
+      
+       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+       <Providers>
         <Appbar/>
         </Providers>
-       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
        <DataBaseTable columns={columns} data={data}></DataBaseTable>
        </ThemeProvider>{children}
      

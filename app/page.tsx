@@ -1,22 +1,13 @@
 "use client";
 
 import React from 'react'
-import DataBaseTable from './database/data-table'
-import { columns } from './database/columns'
-import { data } from '@/lib/data'
-import { ThemeProvider } from '@/components/theme-provider';
 
 type Props = {}
 
 const Homepage = (props: Props) => {
   return (
     <div className='container py-10 mx-auto'>
-       <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-       <DataBaseTable columns={columns} data={data}></DataBaseTable>
-       </ThemeProvider>
-   
     </div>
-    
   )
 }
 

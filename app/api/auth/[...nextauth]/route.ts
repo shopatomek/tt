@@ -9,9 +9,7 @@ const handler = NextAuth({
         }),
     ],
     callbacks: {
-        async signIn({ user, account, profile, email, credentials }) {
-            console.log("user", user);
-            console.log("account", account);
+        async signIn({ user,}) {
             return user;
         }
     }

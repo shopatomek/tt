@@ -46,7 +46,7 @@ const prisma = new PrismaClient();
 // });
 
 const handler = NextAuth({
-  providers:[
+  providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
@@ -65,6 +65,8 @@ const handler = NextAuth({
             name: user.name,
             image: user.image,
             updatedAt: new Date(),
+            lastLogin: new Date(),
+            lastLogout: null, // Resetuj lastLogout na null podczas logowania
           },
         });
       } else {
@@ -73,6 +75,8 @@ const handler = NextAuth({
             name: user.name,
             email: user.email,
             image: user.image,
+            lastLogin: new Date(),
+            lastLogout: null // Ustaw lastLogin podczas tworzenia nowego użytkownika
           },
         });
       }
@@ -84,19 +88,18 @@ const handler = NextAuth({
         where: { email: user.email },
       });
 
-      if (existingUser) {
+      if (existingUser && existingUser.lastLogout === null) {
         await prisma.user.update({
-          where: { id: existingUser.id },
+          where: { id: existingUser.id, lastLogin: null },
           data: {
-            lastLogout: new Date(), // Zapisz aktualną datę i godzinę wylogowania
+            lastLogout: new Date(), // Aktualizuj lastLogout podczas wylogowywania
           },
         });
       }
 
       return null;
     },
-  }
+  },
 });
-
 
 export { handler as GET, handler as POST };

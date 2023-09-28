@@ -46,6 +46,7 @@ const prisma = new PrismaClient();
 // });
 
 const handler = NextAuth({
+  
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID ?? "",

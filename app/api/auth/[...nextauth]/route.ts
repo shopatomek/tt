@@ -67,7 +67,6 @@ const handler = NextAuth({
             image: user.image,
             updatedAt: new Date(),
             lastLogin: new Date(),
-            lastLogout: null, // Resetuj lastLogout na null podczas logowania
           },
         });
       } else {
@@ -77,7 +76,6 @@ const handler = NextAuth({
             email: user.email,
             image: user.image,
             lastLogin: new Date(),
-            lastLogout: null // Ustaw lastLogin podczas tworzenia nowego użytkownika
           },
         });
       }

@@ -9,6 +9,7 @@ import DataBaseTable from './database/data-table'
 import { columns } from './database/columns'
 import { data } from '@/lib/data'
 
+
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {

@@ -19,7 +19,7 @@ export function ThemeToggle({
   const { setTheme } = useTheme();
 
   return (
-    <div className={className}{...props} >
+    <div className={className} {...props}>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="outline" size="icon">

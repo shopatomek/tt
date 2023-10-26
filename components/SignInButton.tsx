@@ -12,10 +12,12 @@ const SignInButton = () => {
   useEffect(() => {
     if (session) {
       const logMessage = `User logged in at: ${new Date().toLocaleTimeString()}`;
+    // @ts-ignore
       setLogs([...logs, logMessage]);
       console.log(logMessage);
     } else {
       const logMessage = `User logged out at: ${new Date().toLocaleTimeString()}`;
+      // @ts-ignore
       setLogs([...logs, logMessage]);
       console.log(logMessage);
     }

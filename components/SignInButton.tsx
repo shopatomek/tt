@@ -8,13 +8,16 @@ import Image from "next/image";
 
 const SignInButton = () => {
   const { data: session } = useSession();
-  console.log(session);
-
+  const [logs, setLogs] = React.useState([]);
   useEffect(() => {
     if (session) {
-      console.log(`User logged in at: ${new Date().toLocaleTimeString()}`);
+      const logMessage = `User logged in at: ${new Date().toLocaleTimeString()}`;
+      setLogs([...logs, logMessage]);
+      console.log(logMessage);
     } else {
-      console.log(`User logged out at: ${new Date().toLocaleTimeString()}`);
+      const logMessage = `User logged out at: ${new Date().toLocaleTimeString()}`;
+      setLogs([...logs, logMessage]);
+      console.log(logMessage);
     }
   }, [session]);
 
